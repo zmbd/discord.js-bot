@@ -63,6 +63,9 @@ client.on('message', (message) => {
             case 'ispeti':
                 client.CMD.get(command).execute(message, client, CMD_USER, CMD_TEXT, con);
             break;
+            case 'pervesti':
+                client.CMD.get(command).execute(message, client, CMD_USER, CMD_TEXT, con);
+            break;
         }
     }
 })

@@ -46,7 +46,6 @@ module.exports = {
                 const muted = message.guild.roles.cache.find(role => role.name === 'muted');
                 const unmute = message.guild.roles.cache.find(role => role.name === 'drake fan');
                
-                console.log('uzmutink mane')
                 memberTarget.roles.add(muted);
                 memberTarget.roles.remove(unmute);
                 setTimeout(async () => {
@@ -55,7 +54,5 @@ module.exports = {
                 }, ms('600000')); 
             }
         });
-
-                
     }
 };
