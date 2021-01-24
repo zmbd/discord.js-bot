@@ -7,6 +7,8 @@ const mysql = require('mysql');
 
 const prefix = '.';
 
+const injectToDB = require('./injectToDB.js');
+
 let con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -43,7 +45,10 @@ fs.readdir('./cmd/', (err, js) => {
 
 client.on('ready', () => {
     console.log(`${client.user.tag}`)
+    injectToDB(client, con);
 })
+
+
 
 client.on('message', (message) => {
     if (message.content.startsWith(prefix)) {
@@ -54,8 +59,12 @@ client.on('message', (message) => {
 
         if (!client.CMD.has(command)) return;
         
-        client.CMD.get(command).execute(message, client, CMD_USER, CMD_TEXT, con);
-       }
+        switch (command) {
+            case 'ispeti':
+                client.CMD.get(command).execute(message, client, CMD_USER, CMD_TEXT, con);
+            break;
+        }
+    }
 })
 
 client.login(process.env.BOT_TOKEN);
